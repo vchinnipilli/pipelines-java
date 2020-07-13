@@ -10,6 +10,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- task: SnykSecurityScan@0
+  inputs:
+    serviceConnectionEndpoint: 'snyk'
+    testType: 'app'
+    targetFile: 'build.gradle'
+    monitorOnBuild: false
+    failOnIssues: false
+    projectName: 'javawebapp'
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -28,13 +37,5 @@ steps:
       echo 'Hello world'
       pwd
       ls -al
-      ls -al ./src/
+      ls -R
 
-- task: SnykSecurityScan@0
-  inputs:
-    serviceConnectionEndpoint: 'snyk'
-    testType: 'app'
-    targetFile: 'build.gradle'
-    monitorOnBuild: false
-    failOnIssues: false
-    projectName: 'javawebapp'
