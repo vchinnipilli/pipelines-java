@@ -28,12 +28,13 @@ steps:
       echo 'Hello world'
       pwd
       ls -al
+      ls -al ./src/
 
 - task: SnykSecurityScan@0
   inputs:
     serviceConnectionEndpoint: 'snyk'
     testType: 'app'
-    targetFile: 'src/build.gradle'
+    targetFile: 'build.gradle'
     monitorOnBuild: false
     failOnIssues: false
     projectName: 'javawebapp'
