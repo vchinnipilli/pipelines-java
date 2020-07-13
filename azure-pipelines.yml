@@ -10,6 +10,15 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo 'Hello world'
+      pwd
+      ls -al
+      ls -R
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -21,12 +30,5 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo 'Hello world'
-      pwd
-      ls -al
-      ls -R
+
 
